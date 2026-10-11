@@ -1,0 +1,1 @@
+This is a test document. It contains some sample text for VeriMerge testing. The number 42 appears here.

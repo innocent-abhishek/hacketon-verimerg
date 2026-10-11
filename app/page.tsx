@@ -1,8 +1,18 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [ping, setPing] = useState<string>("Loading...");
+  useEffect(() => {
+    fetch("http://127.0.0.1:8002/ping")
+      .then((res) => res.json())
+      .then((data) => setPing(data.ping ?? "No ping"))
+      .catch((err) => setPing("Error: " + err.message));
+  }, []);
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <p className="text-lg">Backend ping: {ping}</p>
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert h-5 w-[100px]"
